@@ -14,9 +14,11 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  max-width: 746px;
+  max-width: 636px;
   width: 100%;
 
   background: url(${bgSystem});
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
 `;

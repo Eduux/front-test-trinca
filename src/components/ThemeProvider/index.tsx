@@ -5,11 +5,15 @@ import Theme from 'theme';
 
 import { GlobalStyle } from './styles';
 
-export default function DsProvider({ children }: PropsWithChildren) {
+const DsProvider: React.FC<PropsWithChildren> = ({
+  children,
+}: PropsWithChildren) => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       {children}
     </ThemeProvider>
   );
-}
+};
+
+export default DsProvider;

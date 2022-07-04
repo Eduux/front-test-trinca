@@ -6,6 +6,7 @@ const Theme: DefaultTheme = {
     white: '#FFFFFF',
     gray: '#F1F1F1',
     yellow: '#FFD836',
+    blackWithOpacity: 'rgba(0, 0, 0, 0.8)',
   },
   fontSize: {
     small: '18px',

@@ -7,6 +7,7 @@ declare module 'styled-components' {
       white: string;
       gray: string;
       yellow: string;
+      blackWithOpacity: string;
     };
     fontSize: {
       small: string;
