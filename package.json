@@ -50,5 +50,21 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-prettier": "^3.4.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/pages/**/*.tsx",
+      "src/containers/**/*.ts",
+      "src/components/**/*.ts",
+      "src/helpers/**/*.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
   }
 }

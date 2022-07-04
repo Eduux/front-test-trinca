@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const Login: React.FC = () => {
+const Header: React.FC = () => {
   return (
     <Container>
-      <p>oissss</p>
+      <h1 data-testid="header-text">Agenda de Churras</h1>
     </Container>
   );
 };
 
-export default Login;
+export default Header;
