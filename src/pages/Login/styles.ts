@@ -18,3 +18,7 @@ export const Wrapper = styled.div`
     margin-top: 40px;
   }
 `;
+
+export const FeedBack = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.small};
+`;

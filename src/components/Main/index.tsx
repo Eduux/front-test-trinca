@@ -4,7 +4,9 @@ import RoutesConfig from 'routes';
 import ThemeProvider from '../ThemeProvider';
 import Header from '../Header';
 
-import { Container, Wrapper } from './styles';
+import trincaLogo from 'assets/trincaLogo.png';
+
+import { Container, Wrapper, LogoContainer } from './styles';
 
 const Main: React.FC = () => {
   return (
@@ -13,6 +15,9 @@ const Main: React.FC = () => {
         <Wrapper>
           <Header />
           <RoutesConfig />
+          <LogoContainer>
+            <img src={trincaLogo} alt="Trinca Logo" />
+          </LogoContainer>
         </Wrapper>
       </Container>
     </ThemeProvider>
