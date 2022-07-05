@@ -23,16 +23,3 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-export const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  position: absolute;
-  bottom: 25px;
-
-  @media (max-height: 630px) {
-    display: none;
-  }
-`;

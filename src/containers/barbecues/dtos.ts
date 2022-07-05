@@ -1,11 +1,13 @@
 export interface IActions {
   getBarbecues(): void;
   createBarbecue(barbecue: IBarbecueCreate): void;
+  findBarbecue(uuid: string): void;
 }
 
 export interface IState {
   loading: boolean;
   barbecues: IBarbecue[] | null;
+  barbecueDetail?: IBarbecue;
 }
 
 export type IBarbecueCreate = Omit<IBarbecue, 'uuid'>;

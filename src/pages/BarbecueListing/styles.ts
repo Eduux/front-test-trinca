@@ -1,16 +1,24 @@
 import styled from 'styled-components';
 
+import BarbecueItemCss from 'components/BarbecueItem';
+
 export const BarbecueWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 25px 25px;
   justify-content: space-between;
+
+  @media (min-width: 1000px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 678px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const BarbecueItem = styled.div`
-  background-color: ${({ theme }) => theme.colors.white};
-  padding: 21px 24px 32px 24px;
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
+  ${BarbecueItemCss}
   cursor: pointer;
 
   > div:first-child {
@@ -51,8 +59,8 @@ export const BarbecueItem = styled.div`
 `;
 
 export const CreateNewItem = styled.div`
+  ${BarbecueItemCss}
   background-color: ${({ theme }) => theme.colors.gray};
-  padding: 21px 24px 32px 24px;
 
   display: flex;
   align-items: center;
@@ -71,14 +79,16 @@ export const CreateNewItem = styled.div`
     padding: 23px 25px;
     margin-bottom: 8px;
   }
+
+  @media (max-width: 678px) {
+    grid-row-start: 1;
+  }
 `;
 
 export const NoDataItem = styled.div`
-  background-color: ${({ theme }) => theme.colors.white};
+  ${BarbecueItemCss}
   font-size: ${({ theme }) => theme.fontSize.medium};
   font-weight: 700;
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
-  padding: 21px 24px 32px 24px;
   flex: 1;
   display: flex;
   align-items: center;

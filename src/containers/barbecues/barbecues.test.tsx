@@ -32,7 +32,7 @@ describe('Containers/User', () => {
 
   describe('# actions', () => {
     describe('# getBarbecues', () => {
-      it('should be list barbecues with success', async () => {
+      it('should be list barbecues with success', () => {
         (storage.getItem as jest.Mock).mockImplementationOnce(() =>
           JSON.stringify(mockList),
         );
@@ -53,8 +53,30 @@ describe('Containers/User', () => {
       });
     });
 
+    describe('# findBarbecue', () => {
+      it('should be get barbecue with success', () => {
+        (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify(mockList),
+        );
+
+        const changeStateMock = jest.fn();
+
+        const actionsMock = actions({
+          setData: changeStateMock,
+          data: { ...initialState },
+        });
+
+        actionsMock.findBarbecue('123');
+
+        expect(changeStateMock).toHaveBeenCalledWith({
+          ...initialState,
+          barbecueDetail: mockList[0],
+        });
+      });
+    });
+
     describe('# createBarbecue', () => {
-      it('should be list barbecues with success', async () => {
+      it('should be list barbecues with success', () => {
         const createMock = {
           amountCollected: 100,
           date: '2012-12-02',
@@ -81,7 +103,7 @@ describe('Containers/User', () => {
         expect(storage.setItem).toHaveBeenCalled();
       });
 
-      it('should be list barbecues with []', async () => {
+      it('should be list barbecues with []', () => {
         const createMock = {
           amountCollected: 100,
           date: '2012-12-02',

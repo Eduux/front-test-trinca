@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Loading from 'components/Loading';
 import Content from 'components/Content';
@@ -24,6 +25,8 @@ const BarbecueListing: React.FC = () => {
     actions: { getBarbecues },
   } = useBarbecueContext();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getBarbecues();
   }, []);
@@ -42,7 +45,11 @@ const BarbecueListing: React.FC = () => {
           <BarbecueWrapper data-testid="barbecue-items">
             {barbecues?.map(
               ({ date, title, amountCollected, uuid, participants }) => (
-                <BarbecueItem key={uuid}>
+                <BarbecueItem
+                  key={uuid}
+                  onClick={() => navigate(`/barbecue/${uuid}`)}
+                  data-testid={`barbecue-${title}`}
+                >
                   <div>
                     <h3>{dayAndMonthParse(date)}</h3>
                     <p>{title}</p>

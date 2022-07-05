@@ -1,32 +1,55 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
 import renderWithTheme from 'testUtils';
+import { fireEvent } from '@testing-library/react';
 
-import withBarbecueProvider from 'containers/barbecues';
+import * as storage from 'helpers/storage';
+
+import withBarbecueProvider, { initialState } from 'containers/barbecues';
 
 import Component from './index';
 
+jest.mock('helpers/storage', () => ({
+  getItem: jest.fn(),
+}));
+
+const mockNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  ...(jest.requireActual('react-router-dom') as any),
+  useNavigate: () => mockNavigate,
+}));
+
+const mockList = [
+  {
+    date: '2012-12-2020',
+    title: 'teste',
+    amountCollected: 1000,
+    uuid: '123',
+  },
+];
+
 describe('pages/BarbecueListing', () => {
   it('Should be render load barbecues', () => {
-    const Container = withBarbecueProvider(Component, {
-      loading: false,
-      barbecues: [
-        {
-          amountCollected: 100,
-          date: '2012-12-13',
-          title: 'teste',
-          uuid: '123',
-        },
-      ],
-    });
+    (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+      JSON.stringify(mockList),
+    );
+    const Container = withBarbecueProvider(Component);
 
     const { getByTestId } = renderWithTheme(<Container />);
 
     expect(getByTestId('barbecue-items')).toBeInTheDocument();
+
+    fireEvent.click(getByTestId('barbecue-teste'));
+
+    expect(mockNavigate).toHaveBeenCalled();
   });
 
   it('Should be render load with no barbecues', () => {
+    (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+      JSON.stringify([]),
+    );
     const Container = withBarbecueProvider(Component, {
+      ...initialState,
       loading: true,
       barbecues: null,
     });

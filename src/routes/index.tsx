@@ -12,7 +12,7 @@ const RoutesConfig: React.FC = () => (
     <Routes>
       <Route index element={<Private component={<BarbecueListing />} />} />
       <Route
-        path="/details:barbecueId"
+        path="/barbecue/:id"
         element={<Private component={<BarbecueDetails />} />}
       />
       <Route path="/login" element={<Login />} />
