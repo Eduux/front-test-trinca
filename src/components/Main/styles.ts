@@ -18,8 +18,10 @@ export const Wrapper = styled.div`
 
   background: url(${bgSystem});
   background-size: contain;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-position: center top;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const LogoContainer = styled.div`
@@ -27,6 +29,10 @@ export const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 25px;
-  margin-top: 100px;
+  position: absolute;
+  bottom: 25px;
+
+  @media (max-height: 630px) {
+    display: none;
+  }
 `;

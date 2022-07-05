@@ -1,5 +1,6 @@
 import React from 'react';
 
+import withBarbecueProvider from 'containers/barbecues';
 import RoutesConfig from 'routes';
 import ThemeProvider from '../ThemeProvider';
 import Header from '../Header';
@@ -24,4 +25,4 @@ const Main: React.FC = () => {
   );
 };
 
-export default Main;
+export default withBarbecueProvider(Main);
