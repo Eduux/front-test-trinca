@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom';
 import Loading from 'components/Loading';
 import Content from 'components/Content';
 
+import HeaderInfos from './partials/HeaderInfos';
+import Participants from './partials/Participants';
+
 import { useBarbecueContext } from 'containers/barbecues';
 
 import { BarbecueDetailWrapper } from './styles';
-import HeaderInfos from './partials/HeaderInfos';
 
 const BarbecueDetails: React.FC = () => {
   const {
@@ -30,6 +32,7 @@ const BarbecueDetails: React.FC = () => {
           {barbecueDetail && (
             <BarbecueDetailWrapper>
               <HeaderInfos {...barbecueDetail} />
+              <Participants />
             </BarbecueDetailWrapper>
           )}
         </>

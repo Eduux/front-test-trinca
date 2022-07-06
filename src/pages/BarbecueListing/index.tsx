@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { removeItem } from 'helpers/storage';
+import { key } from 'helpers/auth';
+
 import Loading from 'components/Loading';
 import Content from 'components/Content';
 
@@ -17,6 +20,7 @@ import {
   BarbecueWrapper,
   CreateNewItem,
   NoDataItem,
+  LogoutButton,
 } from './styles';
 
 const BarbecueListing: React.FC = () => {
@@ -27,60 +31,70 @@ const BarbecueListing: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    removeItem(key);
+    navigate('/login');
+  };
+
   useEffect(() => {
     getBarbecues();
   }, []);
 
   return (
     <Content>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          {!barbecues?.length && (
-            <NoDataItem data-testid="no-data-barbecues">
-              Você não tem nenhum churrasco cadastrado.
-            </NoDataItem>
-          )}
-          <BarbecueWrapper data-testid="barbecue-items">
-            {barbecues?.map(
-              ({ date, title, amountCollected, uuid, participants }) => (
-                <BarbecueItem
-                  key={uuid}
-                  onClick={() => navigate(`/barbecue/${uuid}`)}
-                  data-testid={`barbecue-${title}`}
-                >
-                  <div>
-                    <h3>{dayAndMonthParse(date)}</h3>
-                    <p>{title}</p>
-                  </div>
-                  <div>
-                    <div title="Participantes">
-                      <img src={iconPerson} alt="Icon Person" />
-                      <p>{participants?.length || 0}</p>
-                    </div>
-                    <div title="Valor arrecadado">
-                      <img src={iconMoney} alt="Icon Money" />
-                      <p>
-                        {amountCollected
-                          ? moneySimpleParce(amountCollected)
-                          : 0}
-                      </p>
-                    </div>
-                  </div>
-                </BarbecueItem>
-              ),
+      <>
+        <LogoutButton data-testid="logout-button" onClick={handleLogout}>
+          Logout
+        </LogoutButton>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            {!barbecues?.length && (
+              <NoDataItem data-testid="no-data-barbecues">
+                Você não tem nenhum churrasco cadastrado.
+              </NoDataItem>
             )}
-            <CreateNewItem
-              onClick={() => navigate('/barbecue/')}
-              data-testid="create-new-barbecue"
-            >
-              <img src={iconBbq} alt="Icon Barbecue" />
-              <p>Adicionar churras</p>
-            </CreateNewItem>
-          </BarbecueWrapper>
-        </>
-      )}
+            <BarbecueWrapper data-testid="barbecue-items">
+              {barbecues?.map(
+                ({ date, title, amountCollected, uuid, participants }) => (
+                  <BarbecueItem
+                    key={uuid}
+                    onClick={() => navigate(`/barbecue/${uuid}`)}
+                    data-testid={`barbecue-${title}`}
+                  >
+                    <div>
+                      <h3>{dayAndMonthParse(date)}</h3>
+                      <p>{title}</p>
+                    </div>
+                    <div>
+                      <div title="Participantes">
+                        <img src={iconPerson} alt="Icon Person" />
+                        <p>{participants?.length || 0}</p>
+                      </div>
+                      <div title="Valor arrecadado">
+                        <img src={iconMoney} alt="Icon Money" />
+                        <p>
+                          {amountCollected
+                            ? moneySimpleParce(amountCollected)
+                            : 0}
+                        </p>
+                      </div>
+                    </div>
+                  </BarbecueItem>
+                ),
+              )}
+              <CreateNewItem
+                onClick={() => navigate('/barbecue/')}
+                data-testid="create-new-barbecue"
+              >
+                <img src={iconBbq} alt="Icon Barbecue" />
+                <p>Adicionar churras</p>
+              </CreateNewItem>
+            </BarbecueWrapper>
+          </>
+        )}
+      </>
     </Content>
   );
 };

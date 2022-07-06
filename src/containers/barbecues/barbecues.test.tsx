@@ -17,6 +17,8 @@ const mockList = [
     title: 'teste',
     amountCollected: 1000,
     uuid: '123',
+    suggestedValueWithDrink: 20,
+    suggestedValueNoDrink: 10,
   },
 ];
 
@@ -82,6 +84,8 @@ describe('Containers/User', () => {
           date: '2012-12-02',
           title: 'teste',
           additionalInfos: 'teste',
+          suggestedValueWithDrink: 20,
+          suggestedValueNoDrink: 10,
         };
 
         (storage.getItem as jest.Mock).mockImplementationOnce(() =>
@@ -110,6 +114,8 @@ describe('Containers/User', () => {
           date: '2012-12-02',
           title: 'teste',
           additionalInfos: 'teste',
+          suggestedValueWithDrink: 20,
+          suggestedValueNoDrink: 10,
         };
 
         (storage.getItem as jest.Mock).mockImplementationOnce(() => null);
@@ -126,6 +132,142 @@ describe('Containers/User', () => {
         });
 
         actionsMock.createBarbecue(createMock);
+
+        expect(storage.setItem).toHaveBeenCalled();
+      });
+    });
+
+    describe('# insertParticipant', () => {
+      it('should be insertParticipant with success', () => {
+        const insertMock = [
+          {
+            ...mockList[0],
+            participants: [
+              {
+                name: 'teste',
+                value: 10,
+              },
+            ],
+          },
+        ];
+
+        (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify(mockList),
+        );
+
+        (storage.setItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify(insertMock),
+        );
+
+        const changeStateMock = jest.fn();
+
+        const actionsMock = actions({
+          setData: changeStateMock,
+          data: { ...initialState },
+        });
+
+        actionsMock.insertParticipant('123', insertMock[0].participants[0]);
+
+        expect(storage.setItem).toHaveBeenCalled();
+      });
+
+      it('should be insertParticipant with amount undefined', () => {
+        const insertMock = [
+          {
+            ...mockList[0],
+            participants: [
+              {
+                name: 'teste',
+                value: 10,
+              },
+            ],
+          },
+        ];
+
+        (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify([{ ...mockList[0], amountCollected: undefined }]),
+        );
+
+        (storage.setItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify(insertMock),
+        );
+
+        const changeStateMock = jest.fn();
+
+        const actionsMock = actions({
+          setData: changeStateMock,
+          data: { ...initialState },
+        });
+
+        actionsMock.insertParticipant('123', insertMock[0].participants[0]);
+
+        expect(storage.setItem).toHaveBeenCalled();
+      });
+    });
+
+    describe('# deleteParticipant', () => {
+      it('should be deleteParticipant with success', () => {
+        const insertMock = [
+          {
+            ...mockList[0],
+            participants: [
+              {
+                name: 'teste',
+                value: 10,
+              },
+            ],
+          },
+        ];
+
+        (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify(mockList),
+        );
+
+        (storage.setItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify(insertMock),
+        );
+
+        const changeStateMock = jest.fn();
+
+        const actionsMock = actions({
+          setData: changeStateMock,
+          data: { ...initialState },
+        });
+
+        actionsMock.deleteParticipant('123', 0, insertMock[0].participants[0]);
+
+        expect(storage.setItem).toHaveBeenCalled();
+      });
+
+      it('should be deleteParticipant with amount undefined', () => {
+        const insertMock = [
+          {
+            ...mockList[0],
+            participants: [
+              {
+                name: 'teste',
+                value: 10,
+              },
+            ],
+          },
+        ];
+
+        (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify([{ ...mockList[0], amountCollected: undefined }]),
+        );
+
+        (storage.setItem as jest.Mock).mockImplementationOnce(() =>
+          JSON.stringify(insertMock),
+        );
+
+        const changeStateMock = jest.fn();
+
+        const actionsMock = actions({
+          setData: changeStateMock,
+          data: { ...initialState },
+        });
+
+        actionsMock.deleteParticipant('123', 0, insertMock[0].participants[0]);
 
         expect(storage.setItem).toHaveBeenCalled();
       });

@@ -8,11 +8,17 @@ export const dayAndMonthParse = (date: string) => {
   return `${day} / ${month}`;
 };
 
+export const moneyToNumber = (value: string) => {
+  return parseFloat(value.replace(/\D/g, '')) / 100 || 0;
+};
+
 export const moneySimpleParce = (money: number) => {
   return money.toLocaleString('pt-br', {
     style: 'currency',
     currency: 'BRL',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
   });
+};
+
+export const moneyMask = (value: string) => {
+  return moneySimpleParce(moneyToNumber(value));
 };

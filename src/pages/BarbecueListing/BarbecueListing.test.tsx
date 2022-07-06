@@ -10,6 +10,7 @@ import Component from './index';
 
 jest.mock('helpers/storage', () => ({
   getItem: jest.fn(),
+  removeItem: jest.fn(),
 }));
 
 const mockNavigate = jest.fn();
@@ -68,6 +69,19 @@ describe('pages/BarbecueListing', () => {
     const { getByTestId } = renderWithTheme(<Container />);
 
     fireEvent.click(getByTestId('create-new-barbecue'));
+
+    expect(mockNavigate).toHaveBeenCalled();
+  });
+
+  it('Should be render and click logout', () => {
+    (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+      JSON.stringify(mockList),
+    );
+    const Container = withBarbecueProvider(Component);
+
+    const { getByTestId } = renderWithTheme(<Container />);
+
+    fireEvent.click(getByTestId('logout-button'));
 
     expect(mockNavigate).toHaveBeenCalled();
   });

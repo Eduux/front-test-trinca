@@ -2,6 +2,12 @@ export interface IActions {
   getBarbecues(): void;
   createBarbecue(barbecue: IBarbecueCreate): string;
   findBarbecue(uuid: string): void;
+  insertParticipant(uuid: string, participant: IParticipant): void;
+  deleteParticipant(
+    uuid: string,
+    index: number,
+    participant: IParticipant,
+  ): void;
 }
 
 export interface IState {
@@ -18,11 +24,12 @@ export interface IBarbecue {
   title: string;
   additionalInfos: string;
   amountCollected?: number;
-  participants?: IParticipants[];
+  suggestedValueWithDrink: number;
+  suggestedValueNoDrink: number;
+  participants?: IParticipant[];
 }
 
-export interface IParticipants {
+export interface IParticipant {
   name: string;
   value: number;
-  willParticipate: boolean;
 }

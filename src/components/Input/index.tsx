@@ -15,7 +15,7 @@ interface IProps {
 const Input: React.FC<IProps> = ({ name, onChange, label, ...props }) => (
   <>
     <Label htmlFor={name}>
-      <p data-testid={`label-input-${name}`}>{label}</p>
+      {label && <p data-testid={`label-input-${name}`}>{label}</p>}
       <InputStyles
         {...props}
         name={name}

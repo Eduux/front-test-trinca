@@ -7,7 +7,7 @@ import GoBackButton from 'components/GoBackButton';
 import { IBarbecue } from 'containers/barbecues/dtos';
 import { dayAndMonthParse, moneySimpleParce } from 'helpers/parcers';
 
-import { Container } from './styles';
+import { Container, SuggestionMoneyContainer } from './styles';
 
 const HeaderInfos: React.FC<IBarbecue> = ({
   amountCollected,
@@ -15,6 +15,8 @@ const HeaderInfos: React.FC<IBarbecue> = ({
   title,
   participants,
   additionalInfos,
+  suggestedValueNoDrink,
+  suggestedValueWithDrink,
 }) => {
   return (
     <>
@@ -26,16 +28,23 @@ const HeaderInfos: React.FC<IBarbecue> = ({
           <strong>{additionalInfos}</strong>
         </div>
         <div>
-          <div>
+          <div title="Participantes">
             <img src={iconPerson} alt="Icon Person" />
             <p>{participants?.length || 0}</p>
           </div>
-          <div>
+          <div title="Valor arrecadado">
             <img src={iconMoney} alt="Icon Money" />
             <p>{amountCollected ? moneySimpleParce(amountCollected) : 0}</p>
           </div>
         </div>
       </Container>
+      <SuggestionMoneyContainer>
+        <h6>Contribuição sugerida por usuário</h6>
+        <div>
+          <p>Com bedida: {moneySimpleParce(suggestedValueWithDrink)}</p>
+          <p>Sem bebida: {moneySimpleParce(suggestedValueNoDrink)}</p>
+        </div>
+      </SuggestionMoneyContainer>
     </>
   );
 };

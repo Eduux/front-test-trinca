@@ -95,3 +95,11 @@ export const NoDataItem = styled.div`
   justify-content: center;
   margin-bottom: 30px;
 `;
+
+export const LogoutButton = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-weight: 700;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  cursor: pointer;
+`;

@@ -37,6 +37,14 @@ describe('pages/BarbecueCreate', () => {
       target: { value: 'teste' },
     });
 
+    fireEvent.change(getByTestId('suggestedValueWithDrink-input'), {
+      target: { value: '2500' },
+    });
+
+    fireEvent.change(getByTestId('suggestedValueNoDrink-input'), {
+      target: { value: '25' },
+    });
+
     fireEvent.click(getByTestId('button-submit'));
 
     expect(mockedUsedNavigate).toHaveBeenCalled();

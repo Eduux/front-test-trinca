@@ -46,3 +46,18 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const SuggestionMoneyContainer = styled.div`
+  margin-top: 15px;
+  h6 {
+    font-size: ${({ theme }) => theme.fontSize.small};
+    margin-bottom: 10px;
+  }
+
+  > div {
+    display: flex;
+    p {
+      margin-right: 25px;
+    }
+  }
+`;

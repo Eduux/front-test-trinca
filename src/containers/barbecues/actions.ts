@@ -1,7 +1,13 @@
 import { setItem, getItem } from 'helpers/storage';
 import { v4 as uuidv4 } from 'uuid';
 
-import { IActions, IBarbecue, IBarbecueCreate, IState } from './dtos';
+import {
+  IActions,
+  IBarbecue,
+  IBarbecueCreate,
+  IParticipant,
+  IState,
+} from './dtos';
 
 interface IParams {
   data: IState;
@@ -44,7 +50,7 @@ export default (params: IParams): IActions => {
 
     const uuidGenerated = uuidv4();
 
-    dbBarbecues.push({ ...barbecue, uuid: uuidGenerated });
+    dbBarbecues.push({ ...barbecue, participants: [], uuid: uuidGenerated });
 
     setItem(barbecueKey, JSON.stringify(dbBarbecues));
 
@@ -53,9 +59,53 @@ export default (params: IParams): IActions => {
     return uuidGenerated;
   }
 
+  function insertParticipant(uuid: string, participant: IParticipant) {
+    const response = getItem(barbecueKey);
+
+    const parsedBarbecues = JSON.parse(response) as IBarbecue[];
+
+    const barbecueToInsert = parsedBarbecues.findIndex(
+      item => item.uuid === uuid,
+    );
+
+    const newBarbecue = parsedBarbecues[barbecueToInsert];
+
+    newBarbecue.amountCollected =
+      (newBarbecue.amountCollected || 0) + participant.value;
+
+    newBarbecue.participants?.push(participant);
+
+    setItem(barbecueKey, JSON.stringify(parsedBarbecues));
+  }
+
+  function deleteParticipant(
+    uuid: string,
+    index: number,
+    participant: IParticipant,
+  ) {
+    const response = getItem(barbecueKey);
+
+    const parsedBarbecues = JSON.parse(response) as IBarbecue[];
+
+    const barbecueToDelete = parsedBarbecues.findIndex(
+      item => item.uuid === uuid,
+    );
+
+    const newBarbecue = parsedBarbecues[barbecueToDelete];
+
+    newBarbecue.amountCollected =
+      (newBarbecue.amountCollected || 0) - participant.value;
+
+    newBarbecue.participants?.splice(index, 1);
+
+    setItem(barbecueKey, JSON.stringify(parsedBarbecues));
+  }
+
   return {
     getBarbecues,
     findBarbecue,
     createBarbecue,
+    insertParticipant,
+    deleteParticipant,
   };
 };
