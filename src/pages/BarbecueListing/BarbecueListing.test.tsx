@@ -58,4 +58,17 @@ describe('pages/BarbecueListing', () => {
 
     expect(getByTestId('no-data-barbecues')).toBeInTheDocument();
   });
+
+  it('Should be render and click to create a new barbecue', () => {
+    (storage.getItem as jest.Mock).mockImplementationOnce(() =>
+      JSON.stringify([{ ...mockList[0], amountCollected: 0 }]),
+    );
+    const Container = withBarbecueProvider(Component);
+
+    const { getByTestId } = renderWithTheme(<Container />);
+
+    fireEvent.click(getByTestId('create-new-barbecue'));
+
+    expect(mockNavigate).toHaveBeenCalled();
+  });
 });

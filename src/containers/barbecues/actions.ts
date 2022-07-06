@@ -42,11 +42,15 @@ export default (params: IParams): IActions => {
 
     const dbBarbecues = JSON.parse(getItem(barbecueKey)) || [];
 
-    dbBarbecues.push({ ...barbecue, uuid: uuidv4() });
+    const uuidGenerated = uuidv4();
+
+    dbBarbecues.push({ ...barbecue, uuid: uuidGenerated });
 
     setItem(barbecueKey, JSON.stringify(dbBarbecues));
 
     setData({ ...data, loading: false });
+
+    return uuidGenerated;
   }
 
   return {

@@ -1,10 +1,11 @@
 export const dayAndMonthParse = (date: string) => {
-  const dateToFormat = new Date(date);
+  const dateToFormat = new Date(date).toLocaleDateString('pt-Br', {
+    timeZone: 'UTC',
+  });
 
-  const day = dateToFormat.getDate();
-  const month = dateToFormat.getMonth() + 1;
+  const [day, month] = dateToFormat.split('/');
 
-  return `${day >= 9 ? day : `0${day}`} / ${month >= 9 ? month : `0${month}`}`;
+  return `${day} / ${month}`;
 };
 
 export const moneySimpleParce = (money: number) => {

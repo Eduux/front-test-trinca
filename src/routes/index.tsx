@@ -6,11 +6,16 @@ import Private from './Private';
 import Login from 'pages/Login';
 import BarbecueDetails from 'pages/BarbecueDetails';
 import BarbecueListing from 'pages/BarbecueListing';
+import BarbecueCreate from 'pages/BarbecueCreate';
 
 const RoutesConfig: React.FC = () => (
   <BrowserRouter>
     <Routes>
       <Route index element={<Private component={<BarbecueListing />} />} />
+      <Route
+        path="/barbecue"
+        element={<Private component={<BarbecueCreate />} />}
+      />
       <Route
         path="/barbecue/:id"
         element={<Private component={<BarbecueDetails />} />}

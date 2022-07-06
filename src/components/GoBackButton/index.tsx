@@ -10,7 +10,7 @@ const GoBackButton: React.FC = () => {
 
   return (
     <Container>
-      <div onClick={() => navigate(-1)} data-testid="go-back-button">
+      <div onClick={() => navigate('/')} data-testid="go-back-button">
         <img src={iconBack} alt="Go back button" />
         <p>Voltar</p>
       </div>

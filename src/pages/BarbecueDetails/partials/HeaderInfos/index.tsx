@@ -14,6 +14,7 @@ const HeaderInfos: React.FC<IBarbecue> = ({
   date,
   title,
   participants,
+  additionalInfos,
 }) => {
   return (
     <>
@@ -22,6 +23,7 @@ const HeaderInfos: React.FC<IBarbecue> = ({
         <div>
           <p>{dayAndMonthParse(date)}</p>
           <h3>{title}</h3>
+          <strong>{additionalInfos}</strong>
         </div>
         <div>
           <div>
@@ -30,7 +32,7 @@ const HeaderInfos: React.FC<IBarbecue> = ({
           </div>
           <div>
             <img src={iconMoney} alt="Icon Money" />
-            <p>{moneySimpleParce(amountCollected)}</p>
+            <p>{amountCollected ? moneySimpleParce(amountCollected) : 0}</p>
           </div>
         </div>
       </Container>

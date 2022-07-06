@@ -9,6 +9,7 @@ interface IProps {
   onChange(value: string): void;
   type?: string;
   label?: string;
+  withBorder?: boolean;
 }
 
 const Input: React.FC<IProps> = ({ name, onChange, label, ...props }) => (

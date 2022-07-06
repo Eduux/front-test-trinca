@@ -1,6 +1,6 @@
 export interface IActions {
   getBarbecues(): void;
-  createBarbecue(barbecue: IBarbecueCreate): void;
+  createBarbecue(barbecue: IBarbecueCreate): string;
   findBarbecue(uuid: string): void;
 }
 
@@ -16,7 +16,8 @@ export interface IBarbecue {
   uuid: string;
   date: string;
   title: string;
-  amountCollected: number;
+  additionalInfos: string;
+  amountCollected?: number;
   participants?: IParticipants[];
 }
 

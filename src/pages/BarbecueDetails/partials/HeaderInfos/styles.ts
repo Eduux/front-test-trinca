@@ -24,6 +24,7 @@ export const Container = styled.div`
     font-size: ${({ theme }) => theme.fontSize.big};
     color: ${({ theme }) => theme.colors.blackWithOpacity};
     font-weight: 700;
+    margin-bottom: 8px;
   }
 
   > div:last-child > div {

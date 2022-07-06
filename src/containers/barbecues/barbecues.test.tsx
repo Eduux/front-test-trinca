@@ -76,11 +76,12 @@ describe('Containers/User', () => {
     });
 
     describe('# createBarbecue', () => {
-      it('should be list barbecues with success', () => {
+      it('should be create a barbecue with success', () => {
         const createMock = {
           amountCollected: 100,
           date: '2012-12-02',
           title: 'teste',
+          additionalInfos: 'teste',
         };
 
         (storage.getItem as jest.Mock).mockImplementationOnce(() =>
@@ -103,11 +104,12 @@ describe('Containers/User', () => {
         expect(storage.setItem).toHaveBeenCalled();
       });
 
-      it('should be list barbecues with []', () => {
+      it('should be create barbecue with []', () => {
         const createMock = {
           amountCollected: 100,
           date: '2012-12-02',
           title: 'teste',
+          additionalInfos: 'teste',
         };
 
         (storage.getItem as jest.Mock).mockImplementationOnce(() => null);

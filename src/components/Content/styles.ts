@@ -9,6 +9,6 @@ export const Container = styled.div`
 
 export const ContentWrapper = styled.div`
   max-width: 1280px;
-  width: 80%;
+  width: 90%;
   margin-top: -50px;
 `;

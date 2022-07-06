@@ -55,19 +55,26 @@ const BarbecueListing: React.FC = () => {
                     <p>{title}</p>
                   </div>
                   <div>
-                    <div>
+                    <div title="Participantes">
                       <img src={iconPerson} alt="Icon Person" />
                       <p>{participants?.length || 0}</p>
                     </div>
-                    <div>
+                    <div title="Valor arrecadado">
                       <img src={iconMoney} alt="Icon Money" />
-                      <p>{moneySimpleParce(amountCollected)}</p>
+                      <p>
+                        {amountCollected
+                          ? moneySimpleParce(amountCollected)
+                          : 0}
+                      </p>
                     </div>
                   </div>
                 </BarbecueItem>
               ),
             )}
-            <CreateNewItem>
+            <CreateNewItem
+              onClick={() => navigate('/barbecue/')}
+              data-testid="create-new-barbecue"
+            >
               <img src={iconBbq} alt="Icon Barbecue" />
               <p>Adicionar churras</p>
             </CreateNewItem>

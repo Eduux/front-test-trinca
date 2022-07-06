@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Label = styled.label`
   p {
@@ -9,11 +9,19 @@ export const Label = styled.label`
   }
 `;
 
-export const InputStyles = styled.input`
+export const InputStyles = styled.input<{ withBorder?: boolean }>`
   width: 100%;
-  border: none;
   color: ${({ theme }) => theme.colors.blackWithOpacity};
   background-color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.small};
   padding: 15px 20px;
+
+  ${({ withBorder }) =>
+    withBorder
+      ? css`
+          border: 1px solid ${({ theme }) => theme.colors.blackWithOpacity};
+        `
+      : css`
+          border: none;
+        `}
 `;
