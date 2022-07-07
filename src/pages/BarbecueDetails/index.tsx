@@ -9,7 +9,7 @@ import Participants from './partials/Participants';
 
 import { useBarbecueContext } from 'containers/barbecues';
 
-import { BarbecueDetailWrapper } from './styles';
+import { BarbecueDetailWrapper, NoDataContainer } from './styles';
 
 const BarbecueDetails: React.FC = () => {
   const {
@@ -29,11 +29,15 @@ const BarbecueDetails: React.FC = () => {
         <Loading />
       ) : (
         <>
-          {barbecueDetail && (
+          {barbecueDetail ? (
             <BarbecueDetailWrapper>
               <HeaderInfos {...barbecueDetail} />
               <Participants />
             </BarbecueDetailWrapper>
+          ) : (
+            <NoDataContainer data-testid="no-data-found">
+              Churrasco não encontrado
+            </NoDataContainer>
           )}
         </>
       )}

@@ -22,12 +22,13 @@ const Participants: React.FC = () => {
     <Container>
       {barbecueDetail && (
         <>
-          <ParticipantWrapper>
+          <ParticipantWrapper data-testid="participants">
             {barbecueDetail.participants?.map(({ name, value }, index) => (
-              <ParticipantItem key={name}>
+              <ParticipantItem key={name} data-testid={`participant-${name}`}>
                 <p>{name}</p>
                 <p>{moneySimpleParce(value)}</p>
                 <DeleteAction
+                  data-testid={`delete-participant-${name}`}
                   onClick={() => {
                     deleteParticipant(barbecueDetail.uuid, index, {
                       name,
@@ -41,6 +42,7 @@ const Participants: React.FC = () => {
               </ParticipantItem>
             ))}
           </ParticipantWrapper>
+
           <CreateParticipant
             onSaved={participant => {
               insertParticipant(barbecueDetail.uuid, participant);

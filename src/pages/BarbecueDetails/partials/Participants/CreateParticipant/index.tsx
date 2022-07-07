@@ -34,6 +34,7 @@ const CreateParticipant: React.FC<IProps> = ({ onSaved }) => {
           onChange={setName}
           withBorder
           placeholder="Nome"
+          data-testid="name-participant"
         />
         <Input
           name="value"
@@ -41,8 +42,13 @@ const CreateParticipant: React.FC<IProps> = ({ onSaved }) => {
           onChange={value => setValue(moneyMask(value))}
           withBorder
           placeholder="Valor"
+          data-testid="value-participant"
         />
-        <Button disabled={!isCompleted} onClick={handleSave}>
+        <Button
+          data-testid="button-submit-participant"
+          disabled={!isCompleted}
+          onClick={handleSave}
+        >
           Add
         </Button>
       </Container>

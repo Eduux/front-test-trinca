@@ -21,7 +21,7 @@ const HeaderInfos: React.FC<IBarbecue> = ({
   return (
     <>
       <GoBackButton />
-      <Container>
+      <Container data-testid="header-infos">
         <div>
           <p>{dayAndMonthParse(date)}</p>
           <h3>{title}</h3>
