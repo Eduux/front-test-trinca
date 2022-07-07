@@ -2,6 +2,9 @@
 
 Live demo: [Here](https://eduux.github.io/front-test-trinca/)
 
+Login: trinca@teste.com
+Password: trincateste
+
 ## Available Scripts
 
 In the project directory, you can run:
