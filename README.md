@@ -1,6 +1,6 @@
 # Agenda de churras
 
-Live demo: [https://eduux.github.io/front-test-trinca/](Here)
+Live demo: [Here](https://eduux.github.io/front-test-trinca/)
 
 ## Available Scripts
 
