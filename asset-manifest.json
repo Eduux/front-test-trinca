@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.js": "/front-test-trinca/static/js/main.791af751.js",
+    "static/media/bgSystem.png": "/front-test-trinca/static/media/bgSystem.6a6e2b6f6e5061ebcb80.png",
+    "static/media/icon_bbq.svg": "/front-test-trinca/static/media/icon_bbq.ac5321589dbabb4dacbb33b55fe7c33a.svg",
+    "static/media/icon_people.svg": "/front-test-trinca/static/media/icon_people.bb2ae0e1198aef70f132bb79a5182f23.svg",
+    "static/media/icon_back.svg": "/front-test-trinca/static/media/icon_back.228990eebb6e30537ffc92d44fdf1b6e.svg",
+    "index.html": "/front-test-trinca/index.html",
+    "static/media/icon_money.svg": "/front-test-trinca/static/media/icon_money.d670e7833fc2133eb1fe969f2cc86e45.svg",
+    "main.791af751.js.map": "/front-test-trinca/static/js/main.791af751.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.791af751.js"
+  ]
+}
