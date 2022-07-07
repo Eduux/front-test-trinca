@@ -2,6 +2,7 @@
   "name": "front-trinca-test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Eddux.github.io/front-test-trinca",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -24,7 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false --verbose=true --coverage=true",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +56,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "gh-pages": "^4.0.0",
     "husky": "^8.0.0"
   },
   "jest": {
