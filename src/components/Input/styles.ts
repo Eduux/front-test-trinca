@@ -15,6 +15,7 @@ export const InputStyles = styled.input<{ withBorder?: boolean }>`
   background-color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSize.small};
   padding: 15px 20px;
+  -webkit-appearance: none;
 
   ${({ withBorder }) =>
     withBorder
