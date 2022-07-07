@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import { Routes, HashRouter, Route } from 'react-router-dom';
 
 import Private from './Private';
 
@@ -9,7 +9,7 @@ import BarbecueListing from 'pages/BarbecueListing';
 import BarbecueCreate from 'pages/BarbecueCreate';
 
 const RoutesConfig: React.FC = () => (
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route index element={<Private component={<BarbecueListing />} />} />
       <Route
@@ -22,7 +22,7 @@ const RoutesConfig: React.FC = () => (
       />
       <Route path="/login" element={<Login />} />
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default RoutesConfig;
